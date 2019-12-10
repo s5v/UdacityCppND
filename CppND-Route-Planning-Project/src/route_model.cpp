@@ -8,6 +8,7 @@ RouteModel::RouteModel(const std::vector<std::byte> &xml) : Model(xml) {
     m_Nodes.push_back(Node(counter, this, node));
     counter++;
   }
+  CreateNodeToRoadHashmap();
 }
 
 void RouteModel::CreateNodeToRoadHashmap(){
@@ -28,8 +29,7 @@ RouteModel::Node* RouteModel::Node::FindNeighbor(std::vector<int> node_indices)
 {
   RouteModel::Node* closest_node = nullptr;
   
-  Node node;
-
+  RouteModel::Node node;
   for(auto node_index: node_indices){
     node = parent_model->SNodes()[node_index];
     if(this->distance(node) != 0 &&

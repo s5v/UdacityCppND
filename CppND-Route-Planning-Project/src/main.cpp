@@ -54,16 +54,18 @@ int main(int argc, const char **argv)
     // user input for these values using std::cin. Pass the user input to the
     // RoutePlanner object below.
     float start_x, start_y, end_x, end_y;
-    std::cout << "Ented a Start x Value btwn 0 - 100";
+    std::cout << "The coordinate (0, 0) should roughly correspond with the lower left corner of the map, and (100, 100) with the upper right. \n";
+  
+    std::cout << "Ented a Start x Value btwn 0 - 100: ";
     std::cin >> start_x;
   
-      std::cout << "Ented a Start y Value btwn 0 - 100";
+      std::cout << "Ented a Start y Value btwn 0 - 100: ";
     std::cin >> start_y;
   
-      std::cout << "Ented a End x Value btwn 0 - 100";
+      std::cout << "Ented a End x Value btwn 0 - 100: ";
     std::cin >> end_x;
   
-      std::cout << "Ented a End y Value btwn 0 - 100";
+      std::cout << "Ented a End y Value btwn 0 - 100: ";
     std::cin >> end_y;
   
     // Build Model.
