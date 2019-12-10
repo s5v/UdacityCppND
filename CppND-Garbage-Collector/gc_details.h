@@ -5,25 +5,34 @@ template <class T>
 class PtrDetails
 {
   public:
-    unsigned refcount; // current reference count
-    T *memPtr;         // pointer to allocated memory
+    unsigned refcount{0}; // current reference count
+    T *memPtr{NULL};         // pointer to allocated memory
     /* isArray is true if memPtr points
 to an allocated array. It is false
 otherwise. */
-    bool isArray; // true if pointing to array
+    bool isArray{false}; // true if pointing to array
     /* If memPtr is pointing to an allocated
 array, then arraySize contains its size */
-    unsigned arraySize; // size of array
+    unsigned arraySize{0}; // size of array
     // Here, mPtr points to the allocated memory.
     // If this is an array, then size specifies
     // the size of the array.
 
     PtrDetails(void)
     {
-        // TODO: Implement PtrDetails
+        
+        //Do Nothing All Elements Init by Def.
     }
     
-    PtrDetails(int refcount, T* memPtr_ )
+    //Have One More Constructor For Initializing from List 
+    PtrDetails(T* t_, bool isArr_=false , unsigned arrayS_ = 0)
+    {
+        memPtr = t_;
+        isArray = isArr_;
+        arraySize = arrayS_;
+        refcount = 1;
+    }
+    
 };
 // Overloading operator== allows two class objects to be compared.
 // This is needed by the STL list class.
