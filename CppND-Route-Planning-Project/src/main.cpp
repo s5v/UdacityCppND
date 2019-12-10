@@ -36,9 +36,7 @@ int main(int argc, const char **argv)
                 osm_data_file = argv[i];
     }
     else {
-        std::cout << "To specify a map file use the following format: " << std::endl;
-        std::cout << "Usage: [executable] [-f filename.osm]" << std::endl;
-        osm_data_file = "../map.osm";
+        std::cout << "Usage: [executable] [-f filename.osm]" << std::endl;    
     }
     
     std::vector<std::byte> osm_data;
@@ -52,20 +50,33 @@ int main(int argc, const char **argv)
             osm_data = std::move(*data);
     }
     
-    // TODO 1: Declare floats `start_x`, `start_y`, `end_x`, and `end_y` and get
+    // TODO: Declare floats `start_x`, `start_y`, `end_x`, and `end_y` and get
     // user input for these values using std::cin. Pass the user input to the
-    // RoutePlanner object below in place of 10, 10, 90, 90.
-
+    // RoutePlanner object below.
+    float start_x, start_y, end_x, end_y;
+    std::cout << "Ented a Start x Value btwn 0 - 100";
+    std::cin >> start_x;
+  
+      std::cout << "Ented a Start y Value btwn 0 - 100";
+    std::cin >> start_y;
+  
+      std::cout << "Ented a End x Value btwn 0 - 100";
+    std::cin >> end_x;
+  
+      std::cout << "Ented a End y Value btwn 0 - 100";
+    std::cin >> end_y;
+  
     // Build Model.
     RouteModel model{osm_data};
 
-    // Create RoutePlanner object and perform A* search.
-    RoutePlanner route_planner{model, 10, 10, 90, 90};
+    // Perform search and render results.
+    RoutePlanner route_planner{model, 
+                               start_x,
+                               start_y,
+                               end_x,
+                               end_y};
     route_planner.AStarSearch();
-
-    std::cout << "Distance: " << route_planner.GetDistance() << " meters. \n";
-
-    // Render results of search.
+    std::cout << "\nDistance: " << route_planner.GetDistance() << " Meters \n";
     Render render{model};
 
     auto display = io2d::output_surface{400, 400, io2d::format::argb32, io2d::scaling::none, io2d::refresh_style::fixed, 30};
